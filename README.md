@@ -1,3 +1,8 @@
+This is the fron-end for my personal website and e-store. The focus of this project is solely on output not on code quality to prevent perfection paralysis. JFC.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
