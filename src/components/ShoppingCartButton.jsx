@@ -17,16 +17,19 @@ export const ShoppingCartButton = () => {
   let cartState = useSelector((state) => state);
   console.log(cartState);
   const classes = useStyles();
+  const badgeOrigin = { horizontal: "left", vertical: "bottom" };
   return (
-    <Fab
-      className={classes.cartButton}
-      size="small"
-      color="primary"
-      aria-label="cart"
-    >
-      <Badge badgeContent={cartState.cart.length}>
-        <ShoppingCart />
+    <span className={classes.cartButton}>
+      <Badge
+        badgeContent={cartState.cart.length}
+        anchorOrigin={badgeOrigin}
+        overlap="circle"
+        color="error"
+      >
+        <Fab size="small" color="primary" aria-label="cart">
+          <ShoppingCart />
+        </Fab>
       </Badge>
-    </Fab>
+    </span>
   );
 };
