@@ -1,14 +1,35 @@
-const cartDefaultState = [];
+const cartDefaultState = { items: [], cartOpen: false };
 
 export const cartReducer = (state = cartDefaultState, action) => {
-    console.log("cartReducer ran");
-    switch (action.type) {
-        case 'ADD_CART':
-            return [
-                ...state,
-                action.item
-            ];
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "ADD_CART":
+      console.log(state);
+      const item = state.items.find((item) => item.id === action.item.id);
+
+      if (item) {
+        console.log("item in cart already");
+        let what = state.items.map((item) =>
+          item.id === action.item.id
+            ? {
+                ...item,
+                qty: item.qty++,
+              }
+            : item
+        );
+        return {...state, what};
+      } else {
+        action.item.qty = 1;
+        return {
+          ...state,
+          items: [...state.items, action.item],
+        };
+      }
+    case "TOGGLE_CART":
+      return {
+        ...state,
+        cartOpen: action.tog,
+      };
+    default:
+      return state;
+  }
 };

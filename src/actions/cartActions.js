@@ -8,3 +8,14 @@ export const addToCart = (item) => {
         dispatch(_addToCart(item));
     }
 }
+
+const _toggleCart = (tog) => ({
+    type: "TOGGLE_CART",
+    tog,
+})
+
+export const toggleCart = (tog) => {
+    return (dispatch) => {
+        dispatch(_toggleCart(tog));
+    }
+}

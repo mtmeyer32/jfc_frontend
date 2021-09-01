@@ -4,7 +4,11 @@ import thunk from "redux-thunk";
 import { myLogger } from "../middleware/logger";
 import { cartReducer } from "../reducers/cartReducer";
 import { inventoryReducer } from "../reducers/inventoryReducer";
+import { save, load } from "redux-localstorage-simple";
 
 let rootReducer = combineReducers({inventory: inventoryReducer, cart: cartReducer});
 
-export const store = createStore(rootReducer, applyMiddleware(myLogger, thunk));
+const createStoreWithMiddleware = applyMiddleware(myLogger, thunk, save())(createStore);
+
+export const store = createStoreWithMiddleware(rootReducer, load());
+// export const store = createStore(rootReducer, applyMiddleware(myLogger, thunk));
