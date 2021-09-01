@@ -36,7 +36,7 @@ const _getItems = (items) => ({
 });
 
 export const getItems = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     const response = await axios.get("/inventory").catch((error) => console.log(error));
     console.log("after await");
     console.log(response.data);
