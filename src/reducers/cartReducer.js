@@ -3,25 +3,25 @@ const cartDefaultState = { items: [], cartOpen: false };
 export const cartReducer = (state = cartDefaultState, action) => {
   switch (action.type) {
     case "ADD_CART":
-      console.log(state);
-      const item = state.items.find((item) => item.id === action.item.id);
-
-      if (item) {
-        console.log("item in cart already");
-        state.items.map((item) =>
-          item.id === action.item.id
-            ? {
-                ...item,
-                qty: item.qty++,
-              }
-            : item
-        );
-        return state;
-      } else {
-        action.item.qty = 1;
+      if (action.item.id in state.items) {
         return {
           ...state,
-          items: [...state.items, action.item],
+          items: {
+            ...state.items,
+            [action.item.id]: {
+              ...state.items[action.item.id],
+              cartQty: state.items[action.item.id].cartQty + 1,
+            },
+          },
+        };
+      } else {
+        action.item["cartQty"] = 1;
+        return {
+          ...state,
+          items: {
+            ...state.items,
+            [action.item.id]: action.item,
+          },
         };
       }
     case "TOGGLE_CART":

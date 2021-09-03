@@ -28,6 +28,7 @@ const useStyles = makeStyles({
 export const ShoppingCartButton = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state);
+  console.log(cartState);
   const classes = useStyles();
   const badgeOrigin = { horizontal: "left", vertical: "bottom" };
 
@@ -38,7 +39,7 @@ export const ShoppingCartButton = () => {
   return (
     <span className={classes.cartButton}>
       <Badge
-        badgeContent={cartState.cart.items.length}
+        badgeContent={Object.keys(cartState.cart.items).length}
         anchorOrigin={badgeOrigin}
         overlap="circle"
         color="error"
@@ -58,13 +59,13 @@ export const ShoppingCartButton = () => {
         onClose={() => dispatch(toggleCart(false))}
       >
         <List>
-          {cartState.cart.items.map((item, index) => (
+          {Object.entries(cartState.cart.items).map(([objID, item]) => (
             <ListItem button key={item.name}>
               <ListItemText primary={item.name} />
-              <InputLabel id={item.name + index}>QTY</InputLabel>
+              <InputLabel id={objID}>QTY</InputLabel>
               <Select
-                labelId={item.name + index}
-                value={item.qty}
+                labelId={objID}
+                value={item.cartQty}
                 onChange={handleChange}
               >
                 <MenuItem value={0}>0</MenuItem>
@@ -72,7 +73,6 @@ export const ShoppingCartButton = () => {
                 <MenuItem value={2}>2</MenuItem>
                 <MenuItem value={3}>3</MenuItem>
                 <MenuItem value={4}>4</MenuItem>
-
               </Select>
             </ListItem>
           ))}
