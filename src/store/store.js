@@ -11,4 +11,3 @@ let rootReducer = combineReducers({inventory: inventoryReducer, cart: cartReduce
 const createStoreWithMiddleware = applyMiddleware(myLogger, thunk, save())(createStore);
 
 export const store = createStoreWithMiddleware(rootReducer, load());
-// export const store = createStore(rootReducer, applyMiddleware(myLogger, thunk));

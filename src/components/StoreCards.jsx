@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartActions";
-//import SwipeableViews from "react-swipeable-views";
 import { getItems } from "../actions/inventoryAction";
 import { ImageCarousel } from "./ImageCarousel";
 
@@ -36,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 export const StoreCards = () => {
   const dispatch = useDispatch();
   let cardState = useSelector((state) => state);
-  //inventory = tutorialSteps;
   const classes = useStyles();
 
   useEffect(() => {
