@@ -38,23 +38,6 @@ const _getItems = (items) => ({
 export const getItems = () => {
   return async (dispatch) => {
     const response = await axios.get("/inventory").catch((error) => console.log(error));
-    console.log("after await");
-    console.log(response.data);
     dispatch(_getItems(response.data));
   };
 };
-
-// export const getItems = () => {
-//     return (dispatch) => {
-//         console.log("getItems ran");
-//         return axios.get('/inventory').then(result => {
-//             const items = [];
- 
-//             result.data.forEach(item => {
-//                 items.push(item);
-//             });
-//             console.log(items);
-//             dispatch(_getItems(items));
-//         }).catch(error => console.log(error));
-//     };
-// };

@@ -3,19 +3,31 @@ const _addToCart = (item) => ({
     item,
 });
 
+const _toggleCart = (tog) => ({
+    type: "TOGGLE_CART",
+    tog,
+});
+
+const _updateQty = (itemID, qty) => ({
+    type: "UPDATE_QTY",
+    itemID,
+    qty,
+});
+
 export const addToCart = (item) => {
     return (dispatch) => {
         dispatch(_addToCart(item));
     }
 }
 
-const _toggleCart = (tog) => ({
-    type: "TOGGLE_CART",
-    tog,
-})
-
 export const toggleCart = (tog) => {
     return (dispatch) => {
         dispatch(_toggleCart(tog));
+    }
+}
+
+export const updateQty = (itemID, qty) => {
+    return (dispatch) => {
+        dispatch(_updateQty(itemID, qty));
     }
 }

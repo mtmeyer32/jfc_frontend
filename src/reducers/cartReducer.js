@@ -29,6 +29,17 @@ export const cartReducer = (state = cartDefaultState, action) => {
         ...state,
         cartOpen: action.tog,
       };
+    case "UPDATE_QTY":
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [action.itemID]: {
+            ...state.items[action.itemID],
+            cartQty: action.qty,
+          },
+        },
+      };
     default:
       return state;
   }
