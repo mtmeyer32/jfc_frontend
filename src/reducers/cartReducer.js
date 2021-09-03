@@ -8,7 +8,7 @@ export const cartReducer = (state = cartDefaultState, action) => {
 
       if (item) {
         console.log("item in cart already");
-        let what = state.items.map((item) =>
+        state.items.map((item) =>
           item.id === action.item.id
             ? {
                 ...item,
@@ -16,7 +16,7 @@ export const cartReducer = (state = cartDefaultState, action) => {
               }
             : item
         );
-        return {...state, what};
+        return state;
       } else {
         action.item.qty = 1;
         return {
