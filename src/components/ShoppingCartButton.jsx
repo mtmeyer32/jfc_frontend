@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Badge,
   Drawer,
   Fab,
@@ -10,6 +11,7 @@ import {
   makeStyles,
   MenuItem,
   Select,
+  SwipeableDrawer,
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import React from "react";
@@ -59,7 +61,7 @@ export const ShoppingCartButton = () => {
           <ShoppingCart />
         </Fab>
       </Badge>
-      <Drawer
+      <SwipeableDrawer
         classes={{ paper: classes.paper }}
         anchor="right"
         open={cartState.cart.cartOpen}
@@ -68,6 +70,7 @@ export const ShoppingCartButton = () => {
         <List>
           {Object.entries(cartState.cart.items).map(([objID, item]) => (
             <ListItem button key={item.name}>
+              <Avatar alt={item.name} src={item.images[0].imgPath} variant="square"/>
               <ListItemText primary={item.name} secondary={item.description} />
               <FormControl variant="outlined">
                 <InputLabel id={objID}>QTY</InputLabel>
@@ -87,7 +90,7 @@ export const ShoppingCartButton = () => {
             </ListItem>
           ))}
         </List>
-      </Drawer>
+      </SwipeableDrawer>
     </span>
   );
 };
